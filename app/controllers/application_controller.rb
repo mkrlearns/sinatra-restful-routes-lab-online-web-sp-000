@@ -6,9 +6,9 @@ class ApplicationController < Sinatra::Base
 
   get('/recipes') {@recipes = Recipe.all; erb :index}
   get('/recipes/new') {erb :new}
-  get('/recipes/:id') {@recipes = Recipe.find_by_id(params[:id]); erb :show}
-  get('/recipes/:id/edit') {@recipes = Recipe.find_by_id(params[:id]); erb :edit}
-  post('/recipes') {@recipes = Recipe.create(params); redirect to "/recipes/#{@recipe.id}"}
+  get('/recipes/:id') {@recipe = Recipe.find_by_id(params[:id]); erb :show}
+  get('/recipes/:id/edit') {@recipe = Recipe.find_by_id(params[:id]); erb :edit}
+  post('/recipes') {@recipe = Recipe.create(params); redirect to "/recipes/#{@recipe.id}"}
   delete('/recipes/:id') {Recipe.find_by_id(params[:id]).delete; redirect to "/recipes"}
 
   patch '/recipes/:id' do
